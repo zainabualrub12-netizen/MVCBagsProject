@@ -1,0 +1,91 @@
+﻿@model InputDataUsingHtmlHelper.Views.LogIn
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        table td:first-child {
+            width: 100px;
+            vertical-align: top;
+            padding-top: 8px;
+            color: white;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; background-image: url('../../loginpicture/excited-brunette-girl-ordered-purse-in-online-store-holding-smartphone-showing-her-new-bag-and-smiling-amazed-standing-over-pink-background-photo.jpg'); background-size: cover; background-position: center; color: white; text-align: center; padding: 40px; ">
+        <p style="margin-left:100px;font-size:40px;font-family:'Lucida Bright'"> Welcome to <span style="color: yellow;">CarryIt Website</span></p>
+        <h3 style="margin-left:100px;font-family:'Lucida Handwriting';color:darkolivegreen">The right bag doesn't just carry your things <br/>it carries your confidence!!</h3>
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div style="background: rgba(0,0,0,0.6); padding: 30px; border-radius: 10px; width: 300px; text-align: center; align-self: flex-end; margin-right: 2px;margin-left:140px";>
+                <table style="width:100%; border-spacing: 10px;">
+                    <tr>
+                        <td>@Html.LabelFor(m => m.UserName)</td>
+                        <td>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter your name" })
+                            @Html.ValidationMessageFor(m => m.UserName, "", new { @style = "color:red;" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Email)</td>
+                        <td>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @style = "color:red;" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(m => m.Password)</td>
+                        <td>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Enter password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @style = "color:red;" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(m => m.ConfirmPassword)</td>
+                        <td>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @style = "color:red;" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.LabelFor(m => m.BirthDate)</td>
+                        <td>
+                            @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(m => m.BirthDate, "", new { @style = "color:red;" })
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="text-align: center; padding-top: 10px;">
+                            <button type="submit" style="padding: 10px 20px; background-color: #FFD700; border: none; border-radius: 5px; cursor: pointer;">
+                                Start
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        }
+    </div>
+
+</body>
+</html>

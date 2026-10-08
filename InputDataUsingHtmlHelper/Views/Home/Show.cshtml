@@ -1,0 +1,112 @@
+﻿@model List<InputDataUsingHtmlHelper.Models.Bag>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 260px;
+            padding: 15px;
+            transition: 0.3s;
+        }
+
+            .card:hover {
+                transform: scale(1.03);
+            }
+
+            .card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 6px;
+            }
+
+            .card h4 {
+                margin: 10px 0 5px;
+            }
+
+            .card p {
+                margin: 5px 0;
+                color: #444;
+            }
+
+            .card a {
+                display: inline-block;
+                margin: 5px;
+                text-decoration: none;
+                color: white;
+                background-color: #8B4513;
+                padding: 6px 12px;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+
+                .card a:hover {
+                    background-color: #A0522D;
+                }
+
+        .cart-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #006400;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+            .cart-link:hover {
+                background-color: #228B22;
+            }
+    </style>
+</head>
+<body>
+        <div class="container">
+
+            <h2>Welcome, @TempData["UserName"]! 👋</h2
+><p>Let’s explore our collection together ✨</p>
+            <p>
+                <a href="@Url.Action("Cart", "Home")" class="cart-link">🛒 View Cart</a>
+            </p>
+
+            <div class="grid">
+                @foreach (var item in Model) 
+                {
+                    <div class="card">
+                        <img src="@Url.Content(item.ImagePath)" alt="@item.Name">
+                        <h4>@item.Name</h4>
+                        <p>Price: $@item.Price</p>
+                        @Html.ActionLink("Add to Cart", "AddToCart", "Home", new { id = item.Id }, new { @class = "btn" })
+                        @Html.ActionLink("Details", "Details", "Home", new { id = item.Id }, new { @class = "btn" })
+                    </div>
+                }
+            </div>
+        </div>
+</body>
+</html>
